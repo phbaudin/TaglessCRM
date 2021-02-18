@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Config file for Running CC4D's Cloud Build CI
+# Config file for Running TCRM's Cloud Build CI
 
 steps:
 # Get pre-stored service account JSON string from GCP Secret and decode from BASE64 encoding.
@@ -23,7 +23,7 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args: ['clone', 'https://github.com/google/gps_building_blocks.git']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/cc4d:$COMMIT_SHA', '.']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/tcrm:$COMMIT_SHA', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['run', 'gcr.io/$PROJECT_ID/cc4d:$COMMIT_SHA', '/bin/bash', '-c',
-         "pytest -v --cov=. && export AIRFLOW_HOME=/root/cc4d/src && export TEST_TYPE=SYSTEM && export GOOGLE_APPLICATION_CREDENTIALS=/root/cc4d/src/key.json && airflow initdb && pytest -m systemtest test/system/*"]
+  args: ['run', 'gcr.io/$PROJECT_ID/tcrm:$COMMIT_SHA', '/bin/bash', '-c',
+         "pytest -v --cov=. && export AIRFLOW_HOME=/root/tcrm/src && export TEST_TYPE=SYSTEM && export GOOGLE_APPLICATION_CREDENTIALS=/root/tcrm/src/key.json && airflow initdb && pytest -m systemtest test/system/*"]

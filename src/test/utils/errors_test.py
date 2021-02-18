@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for cc4d.utils.errors."""
+"""Tests for tcrm.utils.errors."""
 
 import unittest
 

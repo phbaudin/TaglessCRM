@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Custom hook to monitor and log CC4D info into BigQuery."""
+"""Custom hook to monitor and log TCRM info into BigQuery."""
 
 import datetime
 import enum
@@ -56,7 +56,7 @@ def _generate_zone_aware_timestamp() -> str:
 
 class MonitoringHook(
     bigquery_hook.BigQueryHook, input_hook_interface.InputHookInterface):
-  """Custom hook monitoring CC4D.
+  """Custom hook monitoring TCRM.
 
   Attributes:
     dataset_id: Unique name of the dataset.

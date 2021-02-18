@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Docker file for running CC4D cloudbuid CI tests.
+# Docker file for running TCRM cloudbuid CI tests.
 
 FROM python:3.7-slim-buster
 
@@ -32,11 +32,11 @@ RUN set -ex \
         freezegun \
         pytest-cov
 
-ADD . /root/cc4d
+ADD . /root/tcrm
 
-RUN mkdir -p /root/cc4d/src/gps_building_blocks/cloud/utils
-RUN cp -r /root/cc4d/gps_building_blocks/py/gps_building_blocks/cloud/utils/* /root/cc4d/src/gps_building_blocks/cloud/utils
+RUN mkdir -p /root/tcrm/src/gps_building_blocks/cloud/utils
+RUN cp -r /root/tcrm/gps_building_blocks/py/gps_building_blocks/cloud/utils/* /root/tcrm/src/gps_building_blocks/cloud/utils
 
 ENV PYTHONPATH=".:./src"
 
-WORKDIR /root/cc4d/src
+WORKDIR /root/tcrm/src

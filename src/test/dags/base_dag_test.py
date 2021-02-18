@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for cc4d.dags.base_dag."""
+"""Tests for tcrm.dags.base_dag."""
 
 import datetime
 import unittest

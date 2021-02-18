@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for cc4d.operators.datastore_operator."""
+"""Tests for tcrm.operators.datastore_operator."""
 
 import unittest
 from unittest import mock
@@ -41,7 +41,7 @@ class DataConnectorOperatorTest(unittest.TestCase):
     self.addCleanup(mock.patch.stopall)
 
     self.test_operator_kwargs = {'task_id': 'test_task_id',
-                                 'cc4d_gcs_to_ga_schedule': '@once',
+                                 'tcrm_gcs_to_ga_schedule': '@once',
                                  'ga_tracking_id': 'UA-12345-67',
                                  'ga_base_params': {'v': '1'},
                                  'gcs_bucket': 'test_bucket',

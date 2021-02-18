@@ -17,12 +17,11 @@
 """Tests for plugins.pipeline_plugins.hooks.ads_oc_hook."""
 
 import copy
-
 import unittest
 from unittest import mock
 
-from googleads import adwords
 from google.auth.exceptions import RefreshError
+from googleads import adwords
 
 from plugins.pipeline_plugins.hooks import ads_oc_hook
 from plugins.pipeline_plugins.utils import blob

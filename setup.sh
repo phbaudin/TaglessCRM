@@ -14,11 +14,11 @@
 # limitations under the License.
 
 #!/bin/bash
-# CC4D Cloud Environment setup script.
+# TCRM Cloud Environment setup script.
 
 set -e
 
-VIRTUALENV_PATH=$HOME/"cc4d-venv"
+VIRTUALENV_PATH=$HOME/"tcrm-venv"
 
 # Create virtual environment with python3
 if [[ ! -d "${VIRTUALENV_PATH}" ]]; then
@@ -31,7 +31,7 @@ source "$VIRTUALENV_PATH"/bin/activate
 # Install Python dependencies.
 pip install -r requirements.txt
 
-# Download CC4D Dependencies.
+# Download TCRM Dependencies.
 git clone "https://github.com/google/gps_building_blocks.git"
 mkdir -p src/gps_building_blocks/cloud/utils
 cp -r gps_building_blocks/py/gps_building_blocks/cloud/utils/* src/gps_building_blocks/cloud/utils

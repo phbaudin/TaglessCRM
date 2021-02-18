@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for cc4d.utils.system_testing_utils."""
+"""Tests for tcrm.utils.system_testing_utils."""
 
 import datetime
 import os
@@ -86,7 +86,7 @@ class SystemVerificationUtilsTest(unittest.TestCase):
   def test_get_latest_task_log(self):
     airflow_home = '.'
     with unittest.mock.patch.dict('os.environ', {'AIRFLOW_HOME': airflow_home}):
-      dag_id = 'cc4d_bq_to_ga'
+      dag_id = 'tcrm_bq_to_ga'
       task_id = 'bq_to_ga_task'
       execution_date = '2020-10-13T00:00:00+00:00'
 

@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for cc4d.utils.retry_utils."""
+"""Tests for tcrm.utils.retry_utils."""
 
 import unittest
 from unittest import mock
@@ -23,8 +23,8 @@ from airflow.contrib.hooks import bigquery_hook
 from airflow.contrib.hooks import gcp_api_base_hook
 import parameterized
 
-from plugins.pipeline_plugins.utils import hook_factory
 from gps_building_blocks.cloud.utils import cloud_auth
+from plugins.pipeline_plugins.utils import hook_factory
 
 _HOOKS_KWARGS = {'ads_credentials': 'ads_credentials',
                  'ads_upload_key_type': 'CRM_ID',

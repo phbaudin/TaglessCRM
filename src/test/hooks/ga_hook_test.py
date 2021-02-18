@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for cc4d.hooks.ga_hook."""
+"""Tests for tcrm.hooks.ga_hook."""
 
 import re
 import unittest

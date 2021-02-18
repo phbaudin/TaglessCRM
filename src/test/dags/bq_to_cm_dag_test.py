@@ -22,9 +22,9 @@ from airflow import models
 from airflow.contrib.hooks import bigquery_hook
 import mock
 
+from gps_building_blocks.cloud.utils import cloud_auth
 from dags import bq_to_cm_dag
 from plugins.pipeline_plugins.hooks import monitoring_hook
-from gps_building_blocks.cloud.utils import cloud_auth
 
 _DAG_NAME = bq_to_cm_dag._DAG_NAME
 

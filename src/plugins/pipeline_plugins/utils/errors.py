@@ -24,7 +24,7 @@ import enum
 import frozendict
 
 # A dictionary with error numbers and error descriptions to use for consistent
-# logging and error handling across CC4D.
+# logging and error handling across TCRM.
 _ERROR_ID_DESCRIPTION_MAP = frozendict.frozendict({
     10: 'General error occurred.',
     11: 'Event not sent due to authentication error. Event is due for retry.',
@@ -83,7 +83,7 @@ _ERROR_ID_DESCRIPTION_MAP = frozendict.frozendict({
 
 
 # An enum with error names and error numbers to use for consistent logging and
-# error handling across CC4D.
+# error handling across TCRM.
 class ErrorNameIDMap(enum.Enum):
   """An enum maps error names and error numbers."""
   # Retriable error numbers start from 10

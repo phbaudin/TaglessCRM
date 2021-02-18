@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for cc4d.utils.retry_utils."""
+"""Tests for tcrm.utils.retry_utils."""
 
 import unittest
 from unittest import mock

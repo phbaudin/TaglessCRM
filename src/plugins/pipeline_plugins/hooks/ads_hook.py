@@ -25,13 +25,13 @@ https://developers.google.com/adwords/api/docs/guides/first-api-call#get_an_oaut
 """
 
 import enum
-from typing import Any, Dict, List, Text, Mapping
+from typing import Any, Dict, List, Mapping, Text
 
 from airflow.hooks import base_hook
+from google.auth import exceptions as google_auth_exceptions
 from googleads import adwords
 from googleads import common
 from googleads import errors as googleads_errors
-from google.auth import exceptions as google_auth_exceptions
 
 from plugins.pipeline_plugins.utils import errors
 
@@ -212,7 +212,7 @@ class GoogleAdsHook(base_hook.BaseHook):
     new_user_list = {
         'xsi_type': 'CrmBasedUserList',
         'name': user_list_name,
-        'description': 'A list of users uploaded from Adwords API via CC4D',
+        'description': 'A list of users uploaded from Adwords API via TCRM',
         'membershipLifeSpan': membership_lifespan,
         'uploadKeyType': upload_key_type.name,
     }

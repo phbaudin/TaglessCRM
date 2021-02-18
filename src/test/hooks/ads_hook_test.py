@@ -116,7 +116,7 @@ class GoogleAdsHookTest(unittest.TestCase):
         'operand': {
             'xsi_type': 'CrmBasedUserList',
             'name': 'my_user_list',
-            'description': 'A list of users uploaded from Adwords API via CC4D',
+            'description': 'A list of users uploaded from Adwords API via TCRM',
             'membershipLifeSpan': 8,
             'uploadKeyType': 'MOBILE_ADVERTISING_ID',
             'appId': 'fancyappid'

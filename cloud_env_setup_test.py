@@ -14,18 +14,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Test for cc4d.cloud_env_setup."""
+"""Test for tcrm.cloud_env_setup."""
 
 import argparse
 import os
 import unittest
 
 import mock
-from cc4d import cloud_env_setup
+
 from gps_building_blocks.cloud.utils import cloud_api
 from gps_building_blocks.cloud.utils import cloud_auth
 from gps_building_blocks.cloud.utils import cloud_composer
 from gps_building_blocks.cloud.utils import cloud_storage
+from tcrm import cloud_env_setup
 
 _GCS_DAGS_FOLDER = 'gs://bucket_name/dags'
 

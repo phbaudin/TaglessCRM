@@ -33,12 +33,12 @@ CMHook: Generates, validates and sends the conversion data to the API.
 
 import re
 import time
-from typing import Any, Generator, List, Tuple, Dict
+from typing import Any, Dict, Generator, List, Tuple
 
+from gps_building_blocks.cloud.utils import cloud_auth
 from plugins.pipeline_plugins.hooks import output_hook_interface
 from plugins.pipeline_plugins.utils import blob
 from plugins.pipeline_plugins.utils import errors
-from gps_building_blocks.cloud.utils import cloud_auth
 
 _CONVERSION_REQUIRED_FIELDS = ('gclid',
                                'floodlightActivityId',

@@ -14,13 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Cloud Environment setup module for CC4D.
+"""Cloud Environment setup module for TCRM.
 
 This module automates the following 4 steps:
   1. Enable all the required Cloud APIs.
   2. Create and update the Cloud Composer environment.
   3. Install all the required Python packages.
-  4. Move CC4D plugins from Cloud Console local environment to Cloud Storage
+  4. Move TCRM plugins from Cloud Console local environment to Cloud Storage
   bucket.
 """
 
@@ -33,7 +33,7 @@ from gps_building_blocks.cloud.utils import cloud_auth
 from gps_building_blocks.cloud.utils import cloud_composer
 from gps_building_blocks.cloud.utils import cloud_storage
 
-_COMPOSER_ENV_NAME = 'cc4d-env'
+_COMPOSER_ENV_NAME = 'tcrm-env'
 
 # Required Cloud APIs to be enabled.
 _APIS_TO_BE_ENABLED = [
@@ -55,7 +55,7 @@ _LOCAL_DAGS_FOLDER = 'src/'
 
 # Service account constants.
 _SERVICE_ACCOUNT_KEY_FILE = '/tmp/service_account_key.json'
-_SERVICE_ACCOUNT_NAME = 'cc4d-sa'
+_SERVICE_ACCOUNT_NAME = 'tcrm-sa'
 _SERVICE_ACCOUNT_ROLE = 'editor'
 
 

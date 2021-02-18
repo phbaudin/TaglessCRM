@@ -26,15 +26,15 @@ DEFAULT_REQUIREMENT_DOC = 'requirements.txt'
 
 class CustomizedInstall(install):
   """Customized Install Class for supporting pre-install plugin in prod env."""
-  user_options = [('prod-env', None, 'Install cc4d in plugins for prod env')
+  user_options = [('prod-env', None, 'Install tcrm in plugins for prod env')
                  ] + install.user_options
 
   def create_dummy_plugin_dir(self):
-    """Creates plugins folder, and put hooks and operators into cc4d of plugins."""
+    """Creates plugins folder, and put hooks and operators into tcrm of plugins."""
 
     # default settings to create dummy plugin
     default_plugins_dir_name = 'plugins'
-    default_plugin_name = 'cc4d'
+    default_plugin_name = 'tcrm'
     default_init_name = '__init__.py'
     dir_list = ['hooks', 'operators']
 
@@ -49,7 +49,7 @@ class CustomizedInstall(install):
       os.remove(dummy_plugin_init_path)
     shutil.copy(default_init_name, dummy_plugin_init_path)
 
-    # copy all files/dirs under hooks and operators into plugins/cc4d
+    # copy all files/dirs under hooks and operators into plugins/tcrm
     for src_dir_name in dir_list:
       src_path = os.path.join(os.getcwd(), src_dir_name)
       dst_path = os.path.join(dummy_plugins_path, src_dir_name)
@@ -81,7 +81,7 @@ os.environ['SLUGIFY_USES_TEXT_UNIDECODE'] = 'yes'
 # main setup script
 if __name__ == '__main__':
   setuptools.setup(
-      name='CC4D',
+      name='TCRM',
       version=VERSION,
       description='Cloud Composer for Data',
       install_requires=deps,

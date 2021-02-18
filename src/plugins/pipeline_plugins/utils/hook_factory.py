@@ -14,12 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""A CC4D Hook factory.
+"""A TCRM Hook factory.
 
 The factory functions in this util file can create any type of hook given one
 of the types in InputHookType or OutputHookType.
 
-Any new CC4D hook should be registered in this file to allow for it's creation.
+Any new TCRM hook should be registered in this file to allow for it's creation.
 To add a new hook:
   - Import the hook into this file
   - Add an enum for it either in InputHookType or OutputHookType

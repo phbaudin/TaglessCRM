@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for cc4d.operators.error_report_operator."""
+"""Tests for tcrm.operators.error_report_operator."""
 
 import unittest
 

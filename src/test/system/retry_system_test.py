@@ -26,7 +26,7 @@ import pytest
 from plugins.pipeline_plugins.utils import system_testing_utils
 
 _AIRFLOW_HOME = 'AIRFLOW_HOME'
-_TEST_DAG_NAME = 'cc4d_bq_to_ga'
+_TEST_DAG_NAME = 'tcrm_bq_to_ga'
 _TEST_TASK_NAME = 'bq_to_ga_retry_task'
 _BQ_PROJECT_ID = 'bq_project_id'
 _BQ_DATASET_ID = 'bq_dataset_id'
@@ -39,7 +39,7 @@ _IS_RUN = _TEST_DAG_NAME + '_is_run'
 _MONITORING_DATASET_KEY = 'monitoring_dataset'
 _MONITORING_DATATABLE_KEY = 'monitoring_table'
 _MONITORING_DATASET_VALUE = 'system_test'
-_MONITORING_DATATABLE_VALUE = 'cc4d_monitoring_table'
+_MONITORING_DATATABLE_VALUE = 'tcrm_monitoring_table'
 
 
 @pytest.fixture(name='configuration')
@@ -47,7 +47,7 @@ def fixture_configuration():
   client = datastore.Client()
   kind = 'configuration'
   name = 'bq_to_ga'
-  namespace = 'cc4d-system-test'
+  namespace = 'tcrm-system-test'
   entity_key = client.key(kind, name, namespace=namespace)
   entity = client.get(entity_key)
   return entity

@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Base Airflow DAG for CC4D workflow."""
+"""Base Airflow DAG for TCRM workflow."""
 
 import abc
 import datetime
@@ -39,8 +39,8 @@ _ENABLE_RETURN_REPORT = False
 # Whether or not the DAG should use the monitoring storage for logging.
 # Enablee monitoring to enable retry and reporting later.
 _DAG_ENABLE_MONITORING = True
-_DEFAULT_MONITORING_DATASET_ID = 'cc4d_monitoring_dataset'
-_DEFAULT_MONITORING_TABLE_ID = 'cc4d_monitoring_table'
+_DEFAULT_MONITORING_DATASET_ID = 'tcrm_monitoring_dataset'
+_DEFAULT_MONITORING_TABLE_ID = 'tcrm_monitoring_table'
 
 # BigQuery connection ID for the monitoring table. Refer to
 # https://cloud.google.com/composer/docs/how-to/managing/connections

@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Airflow DAG for CC4D workflow.
+"""Airflow DAG for TCRM workflow.
 
-This DAG will cleanup data in the cc4d_monitoring_dataset.cc4d_monitoring_table
+This DAG will cleanup data in the tcrm_monitoring_dataset.tcrm_monitoring_table
 BigQuery table.
 
 This DAG relies on the following Airflow variables:
@@ -40,7 +40,7 @@ from plugins.pipeline_plugins.operators import monitoring_cleanup_operator
 _AIRFLOW_ENV = 'AIRFLOW_HOME'
 
 # Airflow DAG configurations.
-_DAG_NAME = 'cc4d_monitoring_cleanup'
+_DAG_NAME = 'tcrm_monitoring_cleanup'
 _DAG_SCHEDULE = '@once'
 
 # Number of days data can live in the monitoring table before being removed.

@@ -14,17 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Unit tests for cc4d.hooks.cm_hook."""
+"""Unit tests for tcrm.hooks.cm_hook."""
 
 import enum
-from typing import Any, List, Dict
+from typing import Any, Dict, List
 import unittest
 import unittest.mock as mock
 
+from gps_building_blocks.cloud.utils import cloud_auth
 from plugins.pipeline_plugins.hooks import cm_hook
 from plugins.pipeline_plugins.utils import blob
 from plugins.pipeline_plugins.utils import errors
-from gps_building_blocks.cloud.utils import cloud_auth
 
 
 def _create_response_status(event: Dict[str, Any],

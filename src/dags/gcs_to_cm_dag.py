@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Airflow DAG for CC4D workflow.
+"""Airflow DAG for TCRM workflow.
 
 This DAG will transfer data from GCS to Campaign Manager (DCM).
 
@@ -42,7 +42,7 @@ from plugins.pipeline_plugins.utils import hook_factory
 _AIRFLOW_ENV = 'AIRFLOW_HOME'
 
 # Airflow DAG configurations.
-_DAG_NAME = 'cc4d_gcs_to_cm'
+_DAG_NAME = 'tcrm_gcs_to_cm'
 
 # GCS configuration.
 _GCS_CONTENT_TYPE = 'JSON'

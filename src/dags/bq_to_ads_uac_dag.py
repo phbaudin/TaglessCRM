@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Airflow DAG for CC4D workflow.
+"""Airflow DAG for TCRM workflow.
 
 This DAG will transfer data from BigQuery to Google Ads Universal App Campaign.
 
@@ -38,7 +38,7 @@ from plugins.pipeline_plugins.utils import hook_factory
 _AIRFLOW_ENV = 'AIRFLOW_HOME'
 
 # Airflow DAG configurations.
-_DAG_NAME = 'cc4d_bq_to_ads_uac'
+_DAG_NAME = 'tcrm_bq_to_ads_uac'
 
 # Refer to https://cloud.google.com/composer/docs/how-to/managing/connections
 # for more details on Managing Airflow connections.

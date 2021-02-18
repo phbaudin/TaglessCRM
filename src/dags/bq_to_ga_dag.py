@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Airflow DAG for CC4D workflow.
+"""Airflow DAG for TCRM workflow.
 
 This DAG will transfer data from BigQuery to Google Analytics.
 
@@ -38,7 +38,7 @@ from plugins.pipeline_plugins.utils import hook_factory
 _AIRFLOW_ENV = 'AIRFLOW_HOME'
 
 # Airflow DAG configurations.
-_DAG_NAME = 'cc4d_bq_to_ga'
+_DAG_NAME = 'tcrm_bq_to_ga'
 
 # Required Google Analytics base parameters. Refer to
 # https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters
