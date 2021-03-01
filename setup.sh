@@ -33,8 +33,8 @@ pip install -r requirements.txt
 
 # Download TCRM Dependencies.
 git clone "https://github.com/google/gps_building_blocks.git"
-mkdir -p src/gps_building_blocks/cloud/utils
-cp -r gps_building_blocks/py/gps_building_blocks/cloud/utils/* src/gps_building_blocks/cloud/utils
+mkdir -p src/plugins/gps_building_blocks/cloud/utils
+cp -r gps_building_blocks/py/gps_building_blocks/cloud/utils/* src/plugins/gps_building_blocks/cloud/utils
 
 # Setup cloud environment.
 PYTHONPATH=src:$PYTHONPATH
