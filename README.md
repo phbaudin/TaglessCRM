@@ -42,15 +42,15 @@ Cloud Storage                                                               | Cl
 ## DAGs
 
 DAG            | Definition
--------------- | ----------
+-------------- | ------------------------------------------------------------
 bq_to_ads_cm   | BigQuery To Google Ads Customer Match
 bq_to_ads_oc   | BigQuery To Google Ads Offline Conversion
 bq_to_ads_uac  | BigQuery To Google Ads Universal App Campaign
-bq_to_cm       | BigQuery To Customer Match
+bq_to_cm       | BigQuery To Campaign Manager Offline Conversions
 bq_to_ga       | BigQuery To Google Analytics
 gcs_to_ads_cm  | Google Cloud Storage To Google Ads Customer Match
 gcs_to_ads_oc  | Google Cloud Storage To Google Ads Offline Conversion
 gcs_to_ads_uac | Google Cloud Storage To Google Ads Universal App Campaign
-gcs_to_cm      | Google Cloud Storage To Customer Match
+gcs_to_cm      | Google Cloud Storage To Campaign Manager Offline Conversions
 gcs_to_ga      | Google Cloud Storage To Google Analytics
 
