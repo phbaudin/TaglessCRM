@@ -37,6 +37,6 @@ mkdir -p src/plugins/gps_building_blocks/cloud/utils
 cp -r gps_building_blocks/py/gps_building_blocks/cloud/utils/* src/plugins/gps_building_blocks/cloud/utils
 
 # Setup cloud environment.
-PYTHONPATH=src:$PYTHONPATH
+PYTHONPATH=src:gps_building_blocks/py:$PYTHONPATH
 export PYTHONPATH
 python cloud_env_setup.py "$@"
