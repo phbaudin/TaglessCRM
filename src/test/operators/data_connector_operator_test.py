@@ -56,14 +56,11 @@ class DataConnectorOperatorTest(unittest.TestCase):
     self.original_gcp_hook_init = gcp_api_base_hook.GoogleCloudBaseHook.__init__
     gcp_api_base_hook.GoogleCloudBaseHook.__init__ = mock.MagicMock()
 
-    self.original_monitoring_hook = monitoring_hook.MonitoringHook
-    self.mock_monitoring_hook = mock.MagicMock()
-    monitoring_hook.MonitoringHook = self.mock_monitoring_hook
-    monitoring_hook.MonitoringHook.return_value = self.mock_monitoring_hook
-    self.mock_generator = mock.MagicMock()
-    self.mock_monitoring_hook.generate_processed_blobs_ranges = mock.MagicMock()
-    (self.mock_monitoring_hook
-     .generate_processed_blobs_ranges.return_value) = self.mock_generator
+    self.mock_monitoring_hook = mock.patch.object(
+        monitoring_hook, 'MonitoringHook', autospec=True).start()
+    self.mock_generator = (
+        self.mock_monitoring_hook.return_value.generate_processed_blobs_ranges
+        .return_value)
 
     self.dc_operator = data_connector_operator.DataConnectorOperator(
         dag_name='dag_name',
@@ -110,7 +107,6 @@ class DataConnectorOperatorTest(unittest.TestCase):
   def tearDown(self):
     super().tearDown()
     gcp_api_base_hook.GoogleCloudBaseHook.__init__ = self.original_gcp_hook_init
-    monitoring_hook.MonitoringHook = self.original_monitoring_hook
 
   def test_execute_appends_empty_reports_when_no_events_to_send(self):
     blb = blob.Blob(events=[], location='blob')
@@ -179,30 +175,38 @@ class DataConnectorOperatorTest(unittest.TestCase):
 
   def test_execute_monitoring_does_not_use_default_bq_conn_id(self):
     self.test_operator_kwargs['bq_conn_id'] = 'test_bq_conn_id'
-    with mock.patch('plugins.pipeline_plugins.hooks.'
-                    'monitoring_hook.MonitoringHook', autospec=True) as mocker:
-      data_connector_operator.DataConnectorOperator(
-          dag_name='dag_name',
-          input_hook=hook_factory.InputHookType.GOOGLE_CLOUD_STORAGE,
-          output_hook=hook_factory.OutputHookType.GOOGLE_ANALYTICS,
-          return_report=True, monitoring_dataset='test_dataset',
-          monitoring_table='test_table',
-          monitoring_bq_conn_id='test_monitoring_bq_conn_id',
-          **self.test_operator_kwargs)
-      mocker.assert_called_with(bq_conn_id='test_bq_conn_id')
+    data_connector_operator.DataConnectorOperator(
+        dag_name='dag_name',
+        input_hook=hook_factory.InputHookType.GOOGLE_CLOUD_STORAGE,
+        output_hook=hook_factory.OutputHookType.GOOGLE_ANALYTICS,
+        return_report=True, monitoring_dataset='test_dataset',
+        monitoring_table='test_table',
+        monitoring_bq_conn_id='test_monitoring_bq_conn_id',
+        **self.test_operator_kwargs)
+    monitoring_hook.MonitoringHook.assert_called_with(
+        bq_conn_id='test_monitoring_bq_conn_id',
+        dag_name='dag_name',
+        enable_monitoring=True,
+        location=mock.ANY,
+        monitoring_dataset='test_dataset',
+        monitoring_table='test_table')
 
   def test_execute_monitoring_use_default_bq_conn_id(self):
-    with mock.patch('plugins.pipeline_plugins.hooks.'
-                    'monitoring_hook.MonitoringHook', autospec=True) as mocker:
-      data_connector_operator.DataConnectorOperator(
-          dag_name='dag_name',
-          input_hook=hook_factory.InputHookType.GOOGLE_CLOUD_STORAGE,
-          output_hook=hook_factory.OutputHookType.GOOGLE_ANALYTICS,
-          return_report=True, monitoring_dataset='test_dataset',
-          monitoring_table='test_table',
-          monitoring_bq_conn_id='test_monitoring_bq_conn_id',
-          **self.test_operator_kwargs)
-      mocker.assert_called_with(bq_conn_id='bigquery_default')
+    data_connector_operator.DataConnectorOperator(
+        dag_name='dag_name',
+        input_hook=hook_factory.InputHookType.GOOGLE_CLOUD_STORAGE,
+        output_hook=hook_factory.OutputHookType.GOOGLE_ANALYTICS,
+        return_report=True, monitoring_dataset='test_dataset',
+        monitoring_table='test_table',
+        monitoring_bq_conn_id='test_monitoring_bq_conn_id',
+        **self.test_operator_kwargs)
+    monitoring_hook.MonitoringHook.assert_called_with(
+        bq_conn_id='test_monitoring_bq_conn_id',
+        dag_name='dag_name',
+        enable_monitoring=True,
+        location=mock.ANY,
+        monitoring_dataset='test_dataset',
+        monitoring_table='test_table')
 
   def test_execute_monitoring_bad_values(self):
     with self.assertRaises(errors.MonitoringValueError):
