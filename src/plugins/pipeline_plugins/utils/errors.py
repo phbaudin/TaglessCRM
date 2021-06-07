@@ -21,6 +21,7 @@
 All exceptions defined by the library should be in this file.
 """
 import enum
+from typing import Optional
 import frozendict
 
 # A dictionary with error numbers and error descriptions to use for consistent
@@ -152,7 +153,7 @@ class Error(Exception):
 
   def __init__(self, msg: str = '',
                error_num: ErrorNameIDMap = ErrorNameIDMap.ERROR,
-               error: Exception = None) -> None:
+               error: Optional[Exception] = None) -> None:
     super(Error, self).__init__()
     self.error_num = error_num
     self.msg = msg

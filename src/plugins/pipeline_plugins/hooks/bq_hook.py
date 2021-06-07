@@ -231,7 +231,8 @@ class BigQueryHook(
 
   def events_blobs_generator(
       self,
-      processed_blobs_generator: Generator[Tuple[str, str], None, None] = None
+      processed_blobs_generator: Optional[Generator[Tuple[str, str], None,
+                                                    None]] = None
   ) -> Generator[blob.Blob, None, None]:
     """Generates pages of specified BigQuery table as blobs.
 

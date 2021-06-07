@@ -20,7 +20,7 @@ For customer match details refer to
 https://developers.google.com/google-ads/api/docs/remarketing/audience-types/customer-match
 """
 import re
-from typing import Any, Callable, Dict, List, Tuple, Generator
+from typing import Any, Callable, Dict, Generator, List, Optional, Tuple
 
 from plugins.pipeline_plugins.hooks import ads_hook
 from plugins.pipeline_plugins.hooks import output_hook_interface
@@ -171,7 +171,7 @@ class GoogleAdsCustomerMatchHook(
       ads_credentials: str,
       ads_cm_membership_lifespan: int = ads_hook.MEMBERSHIP_LIFESPAN_DAYS,
       ads_cm_create_list: bool = True,
-      ads_cm_app_id: str = None,
+      ads_cm_app_id: Optional[str] = None,
       **kwargs) -> None:
     """Initialize with a specified user_list_name.
 

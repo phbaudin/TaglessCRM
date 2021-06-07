@@ -18,7 +18,7 @@
 """
 
 import abc
-from typing import Generator, Tuple
+from typing import Generator, Optional, Tuple
 
 from airflow.hooks import base_hook
 
@@ -31,7 +31,8 @@ class InputHookInterface(abc.ABC, base_hook.BaseHook):
   @abc.abstractmethod
   def events_blobs_generator(
       self,
-      processed_blobs_generator: Generator[Tuple[str, str], None, None] = None
+      processed_blobs_generator: Optional[Generator[Tuple[str, str], None,
+                                                    None]] = None
   ) -> Generator[blob.Blob, None, None]:
     """Generates all event from the input source as blobs.
 

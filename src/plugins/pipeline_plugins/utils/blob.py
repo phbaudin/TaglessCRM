@@ -22,7 +22,7 @@ The Blob class contains all JSON events and all necessary metadata to the
 operators.
 """
 
-from typing import List, Dict, Any, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 
 class Blob(object):
@@ -44,10 +44,14 @@ class Blob(object):
     reports: any additional optional information about the blob.
   """
 
-  def __init__(self, events: List[Dict[str, Any]],
-               location: str, reports: List[Any] = None,
-               failed_events: List[Tuple[int, Dict[str, Any], int]] = None,
-               position: int = 0, num_rows: int = None) -> None:
+  def __init__(self,
+               events: List[Dict[str, Any]],
+               location: str,
+               reports: Optional[List[Any]] = None,
+               failed_events: Optional[List[Tuple[int, Dict[str, Any],
+                                                  int]]] = None,
+               position: int = 0,
+               num_rows: Optional[int] = None) -> None:
     """Initiates Blob with events and location metadata."""
     self.events = events
     self.location = location

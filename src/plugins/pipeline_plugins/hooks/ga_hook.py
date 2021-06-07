@@ -134,8 +134,11 @@ class PayloadBuilder(object):
           'Hit size %s exceeds limitation %s.' % (payload_size, limit_size),
           errors.ErrorNameIDMap.GA_HOOK_ERROR_HIT_SIZE_EXCEEDS_LIMITATION)
 
-  def generate_single_payload(self, hit_type: HitTypes, event: Dict[str, Any],
-                              base_params: Dict[str, Any] = None) -> str:
+  def generate_single_payload(
+      self,
+      hit_type: HitTypes,
+      event: Dict[str, Any],
+      base_params: Optional[Dict[str, Any]] = None) -> str:
     """Generates single payload to be sent to GA.
 
     Args:
@@ -166,9 +169,11 @@ class PayloadBuilder(object):
 
     return payload_str
 
-  def generate_batch_payload(self, hit_type: HitTypes,
-                             events: List[Dict[str, Any]],
-                             base_params: Dict[str, Any] = None) -> str:
+  def generate_batch_payload(
+      self,
+      hit_type: HitTypes,
+      events: List[Dict[str, Any]],
+      base_params: Optional[Dict[str, Any]] = None) -> str:
     """Generates batch payload.
 
     Batch payload will generate multiple lines hits in one payload.

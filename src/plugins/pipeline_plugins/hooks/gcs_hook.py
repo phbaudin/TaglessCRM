@@ -20,7 +20,7 @@ import enum
 import io
 import json
 
-from typing import Generator, List, Dict, Any, Tuple
+from typing import Any, Dict, Generator, List, Optional, Tuple
 from airflow.contrib.hooks import gcs_hook
 from google.api_core.exceptions import NotFound
 from googleapiclient import errors as googleapiclient_errors
@@ -252,8 +252,9 @@ class GoogleCloudStorageHook(gcs_hook.GoogleCloudStorageHook,
 
   def events_blobs_generator(
       self,
-      processed_blobs_generator: Generator[Tuple[str, str], None, None] = None
-      ) -> Generator[blob.Blob, None, None]:
+      processed_blobs_generator: Optional[Generator[Tuple[str, str], None,
+                                                    None]] = None
+  ) -> Generator[blob.Blob, None, None]:
     """Generates all blobs from the bucket's prefix location.
 
     Args:

@@ -25,7 +25,7 @@ https://developers.google.com/adwords/api/docs/guides/first-api-call#get_an_oaut
 """
 
 import enum
-from typing import Any, Dict, List, Mapping, Text
+from typing import Any, Dict, List, Mapping, Optional, Text
 
 from airflow.hooks import base_hook
 from google.auth import exceptions as google_auth_exceptions
@@ -191,7 +191,7 @@ class GoogleAdsHook(base_hook.BaseHook):
       user_list_name: Text,
       upload_key_type: UploadKeyType = UploadKeyType.CONTACT_INFO,
       membership_lifespan: int = MEMBERSHIP_LIFESPAN_DAYS,
-      app_id: Text = None) -> int:
+      app_id: Optional[Text] = None) -> int:
     """Creates a new user list.
 
     Args:

@@ -19,7 +19,7 @@
 import datetime
 import enum
 import json
-from typing import Any, Dict, List, Tuple, Generator
+from typing import Any, Dict, Generator, List, Optional, Tuple
 
 from airflow import exceptions
 from airflow.contrib.hooks import bigquery_hook
@@ -180,8 +180,12 @@ class MonitoringHook(
 
     return row
 
-  def store_run(self, dag_name: str, location: str, timestamp: str = None,
-                json_report_1: str = '', json_report_2: str = '') -> None:
+  def store_run(self,
+                dag_name: str,
+                location: str,
+                timestamp: Optional[str] = None,
+                json_report_1: str = '',
+                json_report_2: str = '') -> None:
     """Stores a run log-item into monitoring DB.
 
     Args:
@@ -206,8 +210,12 @@ class MonitoringHook(
       raise errors.MonitoringAppendLogError(error=error,
                                             msg='Failed to insert rows')
 
-  def store_blob(self, dag_name: str, location: str,
-                 position: int, num_rows: int, timestamp: str = None) -> None:
+  def store_blob(self,
+                 dag_name: str,
+                 location: str,
+                 position: int,
+                 num_rows: int,
+                 timestamp: Optional[str] = None) -> None:
     """Stores all blobs log-item into monitoring DB.
 
     Args:
@@ -234,9 +242,13 @@ class MonitoringHook(
                                             msg='Failed to insert rows')
 
   def store_events(
-      self, dag_name: str, location: str, timestamp: str = None,
-      id_event_error_tuple_list: List[Tuple[int, Dict[str, Any], int]] = None
-      ) -> None:
+      self,
+      dag_name: str,
+      location: str,
+      timestamp: Optional[str] = None,
+      id_event_error_tuple_list: Optional[List[Tuple[int, Dict[str, Any],
+                                                     int]]] = None
+  ) -> None:
     """Stores all event log-items into monitoring DB.
 
     Args:
@@ -269,8 +281,10 @@ class MonitoringHook(
       raise errors.MonitoringAppendLogError(error=error,
                                             msg='Failed to insert rows')
 
-  def store_retry(
-      self, dag_name: str, location: str, timestamp: str = None) -> None:
+  def store_retry(self,
+                  dag_name: str,
+                  location: str,
+                  timestamp: Optional[str] = None) -> None:
     """Stores a retry log-item into monitoring DB.
 
     Args:
