@@ -39,6 +39,7 @@ _ERROR_ID_DESCRIPTION_MAP = frozendict.frozendict({
     19: 'Error in loading events from BigQuery. Unable to get total rows.',
     20: 'Error in sending event to Google Analytics. Http error.',
     21: 'Error in loading events from Google Cloud Storage. Http error.',
+    22: 'Error in sending event to Google Analytics 4. Http error.',
 
     50: 'Event not sent. Event will not be retried.',
     51: 'Error in sending event to Ads Customer Match. Hashed values in the payload do not match SHA256 format.',
@@ -79,7 +80,17 @@ _ERROR_ID_DESCRIPTION_MAP = frozendict.frozendict({
     86: 'Error in loading events from Google Cloud Storage. Failed to parse the blob as JSON.',
     87: 'Error in loading events from Google Cloud Storage. Failed to parse the blob as CSV.',
     88: 'Error in loading events from Google Cloud Storage. Failed to parse CSV, not all lines have same length.',
-    89: 'Missing or empty monitoring parameters although monitoring is enabled.'
+    89: 'Missing or empty monitoring parameters although monitoring is enabled.',
+    90: 'Error in sending event to Google Analytics 4. Payload is not valid JSON.',
+    91: 'Error in sending event to Google Analytics 4. Invalid event value(s).',
+    92: 'Error in sending event to Google Analytics 4. client_id is required.',
+    93: 'Error in sending event to Google Analytics 4. timestamp_micros should be int64 or between 72 hours in the past and 15 minutes in the future.',
+    94: 'Error in sending event to Google Analytics 4. non_personalized_ads should be bool.',
+    95: 'Error in sending event to Google Analytics 4. user_id should be string.',
+    96: 'Error in sending event to Google Analytics 4. user_properties contain invalid value.',
+    97: 'Error in sending event to Google Analytics 4. events contain invalid valu.',
+    98: 'Error in sending event to Google Analytics 4. event params contain invalid value.',
+    99: 'Error in sending event to Google Analytics 4. event params items contain invalid value.',
 })
 
 
@@ -100,6 +111,7 @@ class ErrorNameIDMap(enum.Enum):
   RETRIABLE_BQ_HOOK_ERROR_NO_TOTAL_ROWS = 19
   RETRIABLE_GA_HOOK_ERROR_HTTP_ERROR = 20
   RETRIABLE_GCS_HOOK_ERROR_HTTP_ERROR = 21
+  RETRIABLE_GA4_HOOK_ERROR_HTTP_ERROR = 22
 
   # Non retriable error numbers start from 50
   NON_RETRIABLE_ERROR_EVENT_NOT_SENT = 50
@@ -142,6 +154,16 @@ class ErrorNameIDMap(enum.Enum):
   GCS_HOOK_ERROR_BAD_CSV_FORMAT_BLOB = 87
   GCS_HOOK_ERROR_DIFFERENT_ROW_LENGTH_IN_CSV_BLOB = 88
   MONITORING_HOOK_INVALID_VARIABLES = 89
+  GA4_HOOK_ERROR_INVALID_JSON_STRUCTURE = 90
+  GA4_HOOK_ERROR_INVALID_VALUES = 91
+  GA4_HOOK_ERROR_VALUE_REQUIRED_CLIENT_ID = 92
+  GA4_HOOK_ERROR_VALUE_INVALID_TIMESTAMP_MICROS = 93
+  GA4_HOOK_ERROR_VALUE_INVALID_NON_PERSONALIZED_ADS = 94
+  GA4_HOOK_ERROR_VALUE_INVALID_USER_ID = 95
+  GA4_HOOK_ERROR_VALUE_INVALID_USER_PROPERTIES = 96
+  GA4_HOOK_ERROR_VALUE_INVALID_EVENTS = 97
+  GA4_HOOK_ERROR_VALUE_INVALID_EVENTS_PARAMS = 98
+  GA4_HOOK_ERROR_VALUE_INVALID_EVENTS_PARAMS_ITEMS = 99
 
 
 class Error(Exception):
