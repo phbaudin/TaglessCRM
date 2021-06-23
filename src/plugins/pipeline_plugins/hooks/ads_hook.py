@@ -53,6 +53,7 @@ class ServiceType(enum.Enum):
   """
   ADWORDS_USER_LIST_SERVICE = 'AdwordsUserListService'
   OFFLINE_CONVERSION_FEED_SERVICE = 'OfflineConversionFeedService'
+  OFFLINE_DATA_UPLOAD_SERVICE = 'OfflineDataUploadService'
 
 
 class UploadKeyType(enum.Enum):
@@ -283,8 +284,8 @@ class GoogleAdsHook(base_hook.BaseHook):
     except (KeyError, IndexError):
       raise errors.DataOutConnectorSendUnsuccessfulError(
           'Failed to add members to the user list.',
-          error_num=errors.ErrorNameIDMap
-          .RETRIABLE_ADS_HOOK_ERROR_FAIL_ADDING_MEMBERS_TO_USER_LIST)
+          error_num=errors.ErrorNameIDMap.
+          RETRIABLE_ADS_HOOK_ERROR_FAIL_ADDING_MEMBERS_TO_USER_LIST)
 
   def add_offline_conversions(
       self, payload: List[Mapping[Text, Any]]) -> Dict[str, Any]:
@@ -294,7 +295,7 @@ class GoogleAdsHook(base_hook.BaseHook):
     https://developers.google.com/adwords/api/docs/guides/partial-failure
 
     Args:
-      payload: The offline conversions to uplad.
+      payload: The offline conversions to upload.
 
     Returns:
       The partial failures.
@@ -303,15 +304,56 @@ class GoogleAdsHook(base_hook.BaseHook):
       DataOutConnectorAuthenticationError raised when authentication errors
       occurred.
     """
-    service = self._get_service(
-        ServiceType.OFFLINE_CONVERSION_FEED_SERVICE, True)
+    service = self._get_service(ServiceType.OFFLINE_CONVERSION_FEED_SERVICE,
+                                True)
     try:
       partial_failures = service.mutate(payload)
-    except(googleads_errors.GoogleAdsServerFault,
-           google_auth_exceptions.RefreshError) as error:
+    except (googleads_errors.GoogleAdsServerFault,
+            google_auth_exceptions.RefreshError) as error:
       raise errors.DataOutConnectorAuthenticationError(
           error=error,
           msg='Failed to add offline conversions due to authentication error.',
+          error_num=(errors.ErrorNameIDMap.
+                     RETRIABLE_ERROR_OUTPUT_AUTHENTICATION_FAILED))
+    return partial_failures
+
+  def add_store_sales_conversions(
+      self, external_upload_id: str,
+      payload: List[Mapping[Text, Any]]) -> Dict[str, Any]:
+    """Uploads store sales conversions.
+
+    The uploaded results represents as partial failures. For detail:
+    https://developers.google.com/adwords/api/docs/guides/partial-failure
+
+    Args:
+      payload: The store sales conversions to upload.
+
+    Returns:
+      The partial failures.
+
+    Raises:
+      DataOutConnectorAuthenticationError raised when authentication errors
+      occurred.
+    """
+    operations = [{
+        'operator': 'ADD',
+        'operand': {
+            'externalUploadId': external_upload_id,
+            'offlineDataList': payload,
+            'uploadType': 'STORE_SALES_UPLOAD_FIRST_PARTY',
+            #'uploadMetadata': upload_metadata,
+        }
+    }]
+
+    service = self._get_service(ServiceType.OFFLINE_DATA_UPLOAD_SERVICE, True)
+    try:
+      partial_failures = service.mutate(operations)
+    except (googleads_errors.GoogleAdsServerFault,
+            google_auth_exceptions.RefreshError) as error:
+      raise errors.DataOutConnectorAuthenticationError(
+          error=error,
+          msg=
+          'Failed to add store sales conversions due to authentication error.',
           error_num=(errors.ErrorNameIDMap.
                      RETRIABLE_ERROR_OUTPUT_AUTHENTICATION_FAILED))
     return partial_failures

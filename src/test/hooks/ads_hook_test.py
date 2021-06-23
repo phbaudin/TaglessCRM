@@ -155,6 +155,17 @@ class GoogleAdsHookTest(unittest.TestCase):
     with self.assertRaises(errors.DataOutConnectorAuthenticationError):
       self.test_ads_hook.add_offline_conversions({})
 
+  def test_add_store_sales_conversions(self):
+    self.mock_service.mutate.return_value = []
+    partial_failures = self.test_ads_hook.add_store_sales_conversions({})
+    self.assertFalse(partial_failures)
+
+  def test_add_store_sales_conversions_failed_with_authentication(self):
+    self.mock_service.mutate.side_effect = (
+        googleads_errors.GoogleAdsServerFault(document=None))
+    with self.assertRaises(errors.DataOutConnectorAuthenticationError):
+      self.test_ads_hook.add_store_sales_conversions({})
+
 
 if __name__ == '__main__':
   unittest.main()
