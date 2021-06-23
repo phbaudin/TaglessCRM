@@ -38,6 +38,7 @@ import enum
 
 from plugins.pipeline_plugins.hooks import ads_cm_hook
 from plugins.pipeline_plugins.hooks import ads_oc_hook
+from plugins.pipeline_plugins.hooks import ads_ssd_hook
 from plugins.pipeline_plugins.hooks import ads_uac_hook
 from plugins.pipeline_plugins.hooks import bq_hook
 from plugins.pipeline_plugins.hooks import cm_hook
@@ -55,6 +56,7 @@ class InputHookType(enum.Enum):
 class OutputHookType(enum.Enum):
   GOOGLE_ADS_CUSTOMER_MATCH = ads_cm_hook.GoogleAdsCustomerMatchHook
   GOOGLE_ADS_OFFLINE_CONVERSIONS = ads_oc_hook.GoogleAdsOfflineConversionsHook
+  GOOGLE_ADS_STORE_SALES_CONVERSIONS = ads_ssd_hook.GoogleAdsStoreSalesConversionsHook
   GOOGLE_ADS_UNIVERSAL_APP_CAMPAIGN = ads_uac_hook.AdsUniversalAppCampaignHook
   GOOGLE_ANALYTICS = ga_hook.GoogleAnalyticsHook
   GOOGLE_CAMPAIGN_MANAGER_OFFLINE_CONVERSIONS = cm_hook.CampaignManagerHook
