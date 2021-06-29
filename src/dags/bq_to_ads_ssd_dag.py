@@ -30,6 +30,7 @@ Variables.
 """
 
 import os
+import time
 from airflow import models
 
 from dags import base_dag
@@ -80,6 +81,8 @@ class BigQueryToAdsSSDDag(base_dag.BaseDag):
         bq_dataset_id=models.Variable.get('bq_dataset_id', ''),
         bq_table_id=models.Variable.get('bq_table_id', ''),
         ads_credentials=models.Variable.get('ads_credentials', ''),
+        ads_ssd_external_upload_id=models.Variable.get(
+            'ads_ssd_external_upload_id', str(int(time.time()))),
         dag=main_dag)
 
 

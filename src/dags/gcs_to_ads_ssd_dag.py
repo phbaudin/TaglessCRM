@@ -32,6 +32,7 @@ Variables.
 """
 
 import os
+import time
 from airflow import models
 
 from dags import base_dag
@@ -81,6 +82,8 @@ class GCSToAdsSSDDag(base_dag.BaseDag):
                                              _GCS_CONTENT_TYPE).upper(),
         gcs_prefix=models.Variable.get('gcs_bucket_prefix', ''),
         ads_credentials=models.Variable.get('ads_credentials', ''),
+        ads_ssd_external_upload_id=models.Variable.get(
+            'ads_ssd_external_upload_id', str(int(time.time()))),
         dag=main_dag)
 
 

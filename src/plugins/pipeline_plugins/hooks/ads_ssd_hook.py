@@ -114,7 +114,7 @@ class GoogleAdsStoreSalesConversionsHook(
         field in event.keys() for field in store_sales_transaction_fields):
       raise errors.DataOutConnectorValueError(
           f'Event is missing at least one mandatory field'
-          f' {[field for field in store_sales_transaction_fields]}',
+          f' {store_sales_transaction_fields}',
           errors.ErrorNameIDMap.ADS_SSD_HOOK_ERROR_MISSING_MANDATORY_FIELDS)
 
     identifier_types = {
